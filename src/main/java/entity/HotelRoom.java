@@ -3,21 +3,12 @@ package entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "hotel")
+@Table(name = "hotel_room")
 public class HotelRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_hotel_room")
     private int id;
-
-    @Column(name = "state")
-    private String state;
-
-    @Column(name = "arrival_date")
-    private String arrival_date;
-
-    @Column(name = "release_date")
-    private String release_date;
 
     @Column(name = "capacity")
     private int capacity;
@@ -28,22 +19,62 @@ public class HotelRoom {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "booking")
+    private String booking;
 
     public HotelRoom() {
     }
 
-    public HotelRoom(int id, String state, String arrival_date, String release_date, int capacity, String comfort, int price) {
+    public HotelRoom(int id, String booking, int capacity, String comfort, int price) {
         this.id = id;
-        this.state = state;
-        this.arrival_date = arrival_date;
-        this.release_date = release_date;
+        this.booking = booking;
         this.capacity = capacity;
         this.comfort = comfort;
         this.price = price;
     }
 
-    //    @Override
-//    public String toString() {
-//        return "Hotel [id=" + id + ", Name=" + name + ", Surname=" + surname + ", Comment=" + comment + "]";
-//    }
+    public int getId() {
+        return id;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getComfort() {
+        return comfort;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getBooking() {
+        return booking;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setComfort(String comfort) {
+        this.comfort = comfort;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setBooking(String booking) {
+        this.booking = booking;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel [id = " + id + ", capacity = " + capacity + ", comfort = " + comfort + ", price = " + price + ", booking = " + booking + "]";
+    }
 }

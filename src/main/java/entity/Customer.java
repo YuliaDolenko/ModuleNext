@@ -8,7 +8,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cust")
+    @Column(name = "id_customer")
     private int id;
 
     @Column(name = "name")
@@ -20,29 +20,50 @@ public class Customer {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "discount")
-    private String discount;
-
-    @Column(name = "countBookings")
-    private String countBookings;
-
-
-    @OneToMany(mappedBy = "customer",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    private List<HotelRoom> hotelRooms;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_order")
+    private Order order;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, String surname, String comment, String discount, String countBookings, List<HotelRoom> hotelRooms) {
+    public Customer(int id, String name, String surname, String comment) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.comment = comment;
-        this.discount = discount;
-        this.countBookings = countBookings;
-        this.hotelRooms = hotelRooms;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override
